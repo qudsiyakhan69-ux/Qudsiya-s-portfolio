@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('Manrope-Variable.woff2') format('woff2-variations'), url('Manrope-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+  src: url('Unbounded-Variable.woff2') format('woff2-variations'), url('Unbounded-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('BricolageGrotesque-Variable.woff2') format('woff2-variations'), url('BricolageGrotesque-Variable.woff2') format('woff2');
+}
