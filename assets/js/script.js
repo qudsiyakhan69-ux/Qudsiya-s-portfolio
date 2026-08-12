@@ -133,6 +133,12 @@
 
     let wordIndex = 0;
     textNodes.forEach(textNode => {
+      // gradient-text classes use background-clip:text, which only works on
+      // the element that directly owns the text — copy it onto each word's
+      // inner span so words inside a gradient span keep their gradient fill
+      const gradParent = textNode.parentElement.closest('.grad-text, .grad-text-alt');
+      const gradClass = gradParent ? Array.from(gradParent.classList).find(c => c === 'grad-text' || c === 'grad-text-alt') : null;
+
       const words = textNode.textContent.split(/(\s+)/);
       const frag = document.createDocumentFragment();
       words.forEach(word => {
@@ -143,7 +149,7 @@
         const outer = document.createElement('span');
         outer.className = 'split-word';
         const inner = document.createElement('span');
-        inner.className = 'split-word-inner';
+        inner.className = gradClass ? `split-word-inner ${gradClass}` : 'split-word-inner';
         inner.textContent = word;
         inner.style.setProperty('--word-delay', (wordIndex * 0.06) + 's');
         outer.appendChild(inner);
