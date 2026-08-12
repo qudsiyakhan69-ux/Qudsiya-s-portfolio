@@ -725,9 +725,9 @@ button { font: inherit; cursor: pointer; }
    ========================================================================== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 .skill-card {
   background: var(--glass-bg);
@@ -751,6 +751,14 @@ button { font: inherit; cursor: pointer; }
 .skill-card h3 { font-size: 0.98rem; margin-bottom: 6px; }
 .skill-card p { font-size: 0.78rem; color: var(--text-dim); }
 
+.tools-subhead {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin: 28px 0 14px;
+}
+
 .strengths-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .strength-chip {
   padding: 10px 20px;
@@ -768,6 +776,25 @@ button { font: inherit; cursor: pointer; }
   display: inline-block;
   margin-right: 8px;
   box-shadow: 0 0 8px var(--bright-cyan);
+}
+
+.ai-tools-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.ai-tool-chip {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text-hi);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  position: relative;
+}
+.ai-tool-chip::before {
+  content: "";
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--pink-magenta);
+  display: inline-block;
+  margin-right: 8px;
+  box-shadow: 0 0 8px var(--pink-magenta);
 }
 
 /* ==========================================================================
