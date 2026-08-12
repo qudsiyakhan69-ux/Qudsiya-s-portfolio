@@ -37,6 +37,7 @@
 </div>
 
 <div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-dot" id="cursorDot"></div>
 <div class="progress-bar" id="progressBar"></div>
 
 <!-- ===== NAV ===== -->
@@ -79,8 +80,8 @@
 
     <div class="container hero-inner-3col">
       <div class="hero-col hero-col-left" data-reveal>
-        <h1>Welcome to<br>my <span class="grad-text">portfolio</span></h1>
-        <p class="hero-lede">I'm Qudsiya — a 3D animator and designer turning ideas into motion, brand identities and digital experiences.</p>
+        <h1 data-split-reveal>Welcome to<br>my <span class="grad-text">portfolio</span></h1>
+        <p class="hero-lede">I'm Qudsiya — a <span class="role-cycle" id="roleCycle">3D Animator</span> turning ideas into motion, brand identities and digital experiences.</p>
         <div class="hero-actions">
           <a href="#work" class="btn btn-primary">View My Work</a>
           <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -114,12 +115,26 @@
     </div>
   </section>
 
+  <!-- ===== IDENTITY MARQUEE ===== -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">3D Animator</span><span class="marquee-star">✦</span>
+      <span class="marquee-item marquee-outline">UX Designer</span><span class="marquee-star">✦</span>
+      <span class="marquee-item">Brand Identity</span><span class="marquee-star">✦</span>
+      <span class="marquee-item marquee-outline">Motion Artist</span><span class="marquee-star">✦</span>
+      <span class="marquee-item">3D Animator</span><span class="marquee-star">✦</span>
+      <span class="marquee-item marquee-outline">UX Designer</span><span class="marquee-star">✦</span>
+      <span class="marquee-item">Brand Identity</span><span class="marquee-star">✦</span>
+      <span class="marquee-item marquee-outline">Motion Artist</span><span class="marquee-star">✦</span>
+    </div>
+  </div>
+
   <!-- ===== ABOUT ===== -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="kicker">Personal Profile</span>
-        <h2>The story behind the <span class="grad-text">work.</span></h2>
+        <h2 data-split-reveal>The story behind the <span class="grad-text">work.</span></h2>
       </div>
 
       <div class="about-grid">
@@ -182,7 +197,7 @@
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="kicker">Skills</span>
-        <h2>Tools I create with, <span class="grad-text">strengths I lead with.</span></h2>
+        <h2 data-split-reveal>Tools I create with, <span class="grad-text">strengths I lead with.</span></h2>
       </div>
 
       <div class="skills-grid">
@@ -254,13 +269,21 @@
       </div>
 
       <h3 class="tools-subhead" data-reveal>AI &amp; Creative Tools</h3>
-      <div class="ai-tools-row" data-reveal>
-        <span class="ai-tool-chip">Midjourney</span>
-        <span class="ai-tool-chip">Runway ML</span>
-        <span class="ai-tool-chip">Kling AI</span>
-        <span class="ai-tool-chip">Google Veo 3</span>
-        <span class="ai-tool-chip">ElevenLabs</span>
-        <span class="ai-tool-chip">Adobe Creative Suite</span>
+      <div class="ai-tools-marquee" data-reveal>
+        <div class="ai-tools-track">
+          <span class="ai-tool-chip">Midjourney</span>
+          <span class="ai-tool-chip">Runway ML</span>
+          <span class="ai-tool-chip">Kling AI</span>
+          <span class="ai-tool-chip">Google Veo 3</span>
+          <span class="ai-tool-chip">ElevenLabs</span>
+          <span class="ai-tool-chip">Adobe Creative Suite</span>
+          <span class="ai-tool-chip">Midjourney</span>
+          <span class="ai-tool-chip">Runway ML</span>
+          <span class="ai-tool-chip">Kling AI</span>
+          <span class="ai-tool-chip">Google Veo 3</span>
+          <span class="ai-tool-chip">ElevenLabs</span>
+          <span class="ai-tool-chip">Adobe Creative Suite</span>
+        </div>
       </div>
     </div>
   </section>
@@ -270,7 +293,7 @@
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="kicker">Work Experience</span>
-        <h2>Where I've been <span class="grad-text">putting in the work.</span></h2>
+        <h2 data-split-reveal>Where I've been <span class="grad-text">putting in the work.</span></h2>
       </div>
 
       <div class="timeline">
@@ -321,7 +344,7 @@
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="kicker">Featured Work</span>
-        <h2>Selected work from <span class="grad-text">Behance.</span></h2>
+        <h2 data-split-reveal>Selected work from <span class="grad-text">Behance.</span></h2>
         <p class="section-sub">A mix of UI/UX, 3D and brand work — <a href="https://www.behance.net/qudsiyakhan" target="_blank" rel="noopener" class="inline-link">see the full portfolio on Behance ↗</a></p>
       </div>
 
@@ -355,6 +378,18 @@
       <div class="work-category" data-reveal>
         <div class="work-category-head"><h3>3D Work</h3></div>
         <div class="work-grid">
+          <article class="work-card tilt-card">
+            <div class="work-card-link work-video-card" id="unseenRealmCard" tabindex="0" role="button" aria-label="Play Unseen Realm preview">
+              <div class="work-visual is-video">
+                <video src="assets/videos/unseen-realm-preview.mp4" poster="assets/img/work/unseen-realm-poster.jpg" muted loop playsinline preload="none"></video>
+                <span class="work-play-icon" aria-hidden="true">▶</span>
+              </div>
+              <div class="work-info">
+                <span class="work-tag">3D · Bachelor's Thesis</span>
+                <h4>Unseen Realm</h4>
+              </div>
+            </div>
+          </article>
           <article class="work-card tilt-card">
             <a class="work-card-link" href="https://www.behance.net/gallery/211921143/3D-project-short-film-(Ai-and-creativity-)" target="_blank" rel="noopener">
               <div class="work-visual"><img src="assets/img/work/3d-short-film.jpg" alt="3D project short film (AI and creativity)" loading="lazy"></div>
@@ -484,7 +519,7 @@
     <div class="container">
       <div class="section-head" data-reveal>
         <span class="kicker">How I Work</span>
-        <h2>From concept to <span class="grad-text">final render.</span></h2>
+        <h2 data-split-reveal>From concept to <span class="grad-text">final render.</span></h2>
       </div>
 
       <div class="process-row">
@@ -524,7 +559,7 @@
         <span class="blob blob-contact" aria-hidden="true"></span>
         <div class="contact-info">
           <span class="kicker">Get In Touch</span>
-          <h2>Let's build something <span class="grad-text">memorable.</span></h2>
+          <h2 data-split-reveal>Let's build something <span class="grad-text">memorable.</span></h2>
           <p>Have a project, internship or collaboration in mind? My inbox is open.</p>
 
           <ul class="contact-list">

@@ -106,6 +106,61 @@
     revealObserver.observe(el);
   });
 
+  /* ---------- word-by-word heading reveal ---------- */
+  const splitEls = document.querySelectorAll('[data-split-reveal]');
+  splitEls.forEach(el => {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) textNodes.push(node);
+
+    let wordIndex = 0;
+    textNodes.forEach(textNode => {
+      const words = textNode.textContent.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      words.forEach(word => {
+        if (!word.trim()) {
+          frag.appendChild(document.createTextNode(word));
+          return;
+        }
+        const outer = document.createElement('span');
+        outer.className = 'split-word';
+        const inner = document.createElement('span');
+        inner.className = 'split-word-inner';
+        inner.textContent = word;
+        inner.style.setProperty('--word-delay', (wordIndex * 0.06) + 's');
+        outer.appendChild(inner);
+        frag.appendChild(outer);
+        wordIndex++;
+      });
+      textNode.parentNode.replaceChild(frag, textNode);
+    });
+  });
+  const splitObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('split-in-view');
+        splitObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+  splitEls.forEach(el => splitObserver.observe(el));
+
+  /* ---------- word-cycling hero role ---------- */
+  const roleCycle = document.getElementById('roleCycle');
+  if (roleCycle) {
+    const roles = ['3D Animator', 'UX Designer', 'Motion Artist', 'Brand Designer'];
+    let roleIndex = 0;
+    setInterval(() => {
+      roleCycle.classList.add('role-cycle-out');
+      setTimeout(() => {
+        roleIndex = (roleIndex + 1) % roles.length;
+        roleCycle.textContent = roles[roleIndex];
+        roleCycle.classList.remove('role-cycle-out');
+      }, 350);
+    }, 2600);
+  }
+
   /* ---------- starfield ---------- */
   const starfield = document.getElementById('starfield');
   if (starfield) {
@@ -123,12 +178,17 @@
     starfield.appendChild(frag);
   }
 
-  /* ---------- cursor glow (desktop only) ---------- */
+  /* ---------- cursor glow + custom cursor dot (desktop only) ---------- */
   const cursorGlow = document.getElementById('cursorGlow');
+  const cursorDot = document.getElementById('cursorDot');
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   if (cursorGlow && !isTouch) {
+    document.documentElement.classList.add('custom-cursor-active');
     let mx = -400, my = -400, cx = -400, cy = -400;
-    window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      if (cursorDot) { cursorDot.style.left = mx + 'px'; cursorDot.style.top = my + 'px'; }
+    });
     (function raf() {
       cx += (mx - cx) * 0.12;
       cy += (my - cy) * 0.12;
@@ -136,6 +196,41 @@
       cursorGlow.style.top = cy + 'px';
       requestAnimationFrame(raf);
     })();
+
+    if (cursorDot) {
+      const hoverTargets = 'a, button, .tilt-card, input, textarea';
+      document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(hoverTargets)) cursorDot.classList.add('cursor-hover');
+      });
+      document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(hoverTargets)) cursorDot.classList.remove('cursor-hover');
+      });
+    }
+  }
+
+  /* ---------- work video card (hover on desktop, tap on touch) ---------- */
+  const videoCard = document.getElementById('unseenRealmCard');
+  if (videoCard) {
+    const video = videoCard.querySelector('video');
+    const playVideo = () => {
+      video.play().catch(() => {});
+      videoCard.classList.add('is-playing');
+    };
+    const pauseVideo = () => {
+      video.pause();
+      videoCard.classList.remove('is-playing');
+    };
+    if (isTouch) {
+      videoCard.addEventListener('click', () => {
+        if (videoCard.classList.contains('is-playing')) pauseVideo();
+        else playVideo();
+      });
+    } else {
+      videoCard.addEventListener('mouseenter', playVideo);
+      videoCard.addEventListener('mouseleave', pauseVideo);
+      videoCard.addEventListener('focus', playVideo);
+      videoCard.addEventListener('blur', pauseVideo);
+    }
   }
 
   /* ---------- 3D tilt on cards ---------- */
