@@ -91,6 +91,23 @@
 
   backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+  /* ---------- background music toggle (opt-in only, no autoplay) ---------- */
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  if (musicToggle && bgMusic) {
+    musicToggle.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().catch(() => {});
+        musicToggle.classList.add('is-playing');
+        musicToggle.setAttribute('aria-pressed', 'true');
+      } else {
+        bgMusic.pause();
+        musicToggle.classList.remove('is-playing');
+        musicToggle.setAttribute('aria-pressed', 'false');
+      }
+    });
+  }
+
   /* ---------- scroll reveal ---------- */
   const revealEls = document.querySelectorAll('[data-reveal]');
   const revealObserver = new IntersectionObserver((entries) => {
