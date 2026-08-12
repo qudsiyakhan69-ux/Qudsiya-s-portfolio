@@ -178,6 +178,23 @@
     starfield.appendChild(frag);
   }
 
+  /* ---------- site-wide starfield (stays put behind all sections) ---------- */
+  const siteStarfield = document.getElementById('siteStarfield');
+  if (siteStarfield) {
+    const count = window.innerWidth < 720 ? 50 : 110;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+      const star = document.createElement('span');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+      star.style.width = star.style.height = (Math.random() * 1.8 + 0.8).toFixed(1) + 'px';
+      frag.appendChild(star);
+    }
+    siteStarfield.appendChild(frag);
+  }
+
   /* ---------- cursor glow + custom cursor dot (desktop only) ---------- */
   const cursorGlow = document.getElementById('cursorGlow');
   const cursorDot = document.getElementById('cursorDot');

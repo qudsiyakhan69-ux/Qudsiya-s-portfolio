@@ -128,6 +128,21 @@ button { font: inherit; cursor: pointer; }
   transition: opacity .3s;
 }
 
+.site-starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.site-starfield .star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.35;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
 .cursor-dot {
   position: fixed;
   width: 10px; height: 10px;
@@ -746,6 +761,69 @@ button { font: inherit; cursor: pointer; }
   color: var(--bright-cyan);
   font-size: 1.2rem;
   flex-shrink: 0;
+}
+
+/* ==========================================================================
+   AMBIENT 3D SHAPES (section background flair)
+   ========================================================================== */
+.ambient-shapes { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+  background: radial-gradient(circle at 35% 30%, var(--pink-magenta), var(--violet) 55%, transparent 75%);
+  animation: amb-float 9s ease-in-out infinite;
+}
+.ambient-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(9,251,255,0.3);
+  box-shadow: 0 0 30px rgba(9,251,255,0.12) inset;
+  animation: amb-spin-tilt 16s linear infinite;
+}
+.ambient-cube-mini {
+  position: absolute;
+  width: 46px; height: 46px;
+  transform-style: preserve-3d;
+  animation: cube-spin 11s linear infinite;
+  opacity: 0.5;
+}
+.ambient-cube-mini i {
+  position: absolute;
+  width: 46px; height: 46px;
+  background: linear-gradient(135deg, rgba(212,3,225,0.35), rgba(3,204,255,0.35));
+  border: 1px solid rgba(255,255,255,0.18);
+  display: block;
+}
+.ambient-cube-mini i:nth-child(1) { transform: translateZ(23px); }
+.ambient-cube-mini i:nth-child(2) { transform: rotateY(180deg) translateZ(23px); }
+.ambient-cube-mini i:nth-child(3) { transform: rotateY(90deg) translateZ(23px); }
+.ambient-cube-mini i:nth-child(4) { transform: rotateY(-90deg) translateZ(23px); }
+.ambient-cube-mini i:nth-child(5) { transform: rotateX(90deg) translateZ(23px); }
+.ambient-cube-mini i:nth-child(6) { transform: rotateX(-90deg) translateZ(23px); }
+
+@keyframes amb-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-24px) translateX(10px); }
+}
+@keyframes amb-spin-tilt {
+  from { transform: perspective(600px) rotateX(55deg) rotate(0deg); }
+  to { transform: perspective(600px) rotateX(55deg) rotate(360deg); }
+}
+
+.amb-a { width: 90px; height: 90px; top: 12%; right: 6%; }
+.amb-b { width: 130px; height: 130px; bottom: 8%; left: 4%; animation-delay: -4s; }
+.amb-c { top: 15%; left: 5%; }
+.amb-d { width: 70px; height: 70px; bottom: 12%; right: 8%; animation-delay: -2s; }
+.amb-e { width: 100px; height: 100px; top: 8%; left: 3%; animation-delay: -6s; }
+.amb-f { width: 60px; height: 60px; bottom: 15%; right: 5%; animation-delay: -3s; }
+.amb-g { top: 10%; right: 6%; animation-delay: -3s; }
+.amb-h { width: 110px; height: 110px; bottom: 6%; left: 4%; animation-delay: -8s; }
+
+@media (max-width: 900px) {
+  .ambient-shapes { display: none; }
 }
 
 /* ==========================================================================
