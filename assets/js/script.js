@@ -233,6 +233,62 @@
     }
   }
 
+  /* ---------- scroll-scrubbed project showcase ---------- */
+  const projectFeatures = document.querySelectorAll('[data-project-feature]');
+  const pfEnabled = window.matchMedia('(min-width: 901px)').matches && !reduceMotion;
+  if (projectFeatures.length && pfEnabled) {
+    const clamp01 = (n) => Math.max(0, Math.min(1, n));
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    const items = Array.from(projectFeatures).map(section => {
+      const media = section.querySelector('.project-feature-media');
+      const text = section.querySelector('.project-feature-text');
+      const mediaEl = section.querySelector('.pf-media-el');
+      let started = false;
+      return { section, media, text, mediaEl, started };
+    });
+
+    function updateProjectFeatures() {
+      const vh = window.innerHeight;
+      items.forEach(item => {
+        const rect = item.section.getBoundingClientRect();
+        const total = item.section.offsetHeight - vh;
+        const scrolled = -rect.top;
+        const p = total > 0 ? clamp01(scrolled / total) : 0;
+
+        const shrinkT = clamp01((p - 0.32) / 0.32);
+        const scale = lerp(1, 0.56, shrinkT);
+        const shiftX = lerp(0, -item.section.offsetWidth * 0.235, shrinkT);
+        item.media.style.transform = `translate(calc(-50% + ${shiftX.toFixed(1)}px), -50%) scale(${scale.toFixed(4)})`;
+        item.section.classList.toggle('pf-shrunk', shrinkT > 0.7);
+
+        const textT = clamp01((p - 0.42) / 0.4);
+        item.text.style.opacity = textT.toFixed(3);
+        item.text.style.transform = `translateY(-50%) translateX(${lerp(26, 0, textT).toFixed(1)}px)`;
+
+        if (item.mediaEl && item.mediaEl.tagName === 'VIDEO') {
+          const active = rect.top < vh * 1.1 && rect.bottom > -vh * 0.1;
+          if (active && !item.started) {
+            item.started = true;
+            item.mediaEl.play().catch(() => {});
+          } else if (!active && item.started) {
+            item.started = false;
+            item.mediaEl.pause();
+          }
+        }
+      });
+    }
+
+    let pfTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!pfTicking) {
+        requestAnimationFrame(() => { updateProjectFeatures(); pfTicking = false; });
+        pfTicking = true;
+      }
+    }, { passive: true });
+    updateProjectFeatures();
+  }
+
   /* ---------- 3D tilt on cards ---------- */
   if (!isTouch) {
     document.querySelectorAll('.tilt-card').forEach(card => {
