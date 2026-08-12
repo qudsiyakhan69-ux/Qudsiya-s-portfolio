@@ -976,6 +976,7 @@ button { font: inherit; cursor: pointer; }
   height: 240vh;
 }
 .project-feature-sticky {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -1041,8 +1042,30 @@ button { font: inherit; cursor: pointer; }
 }
 .pf-link:hover { color: var(--bright-cyan); }
 
-/* mobile / reduced-motion: no pin, just a normal stacked reveal */
-@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+/* mobile: same pin-and-play idea, but text slides up from the bottom
+   over the media instead of sliding in from the side (no room for both) */
+@media (max-width: 900px) {
+  .project-feature-media {
+    width: 94vw;
+    left: 50%;
+    top: 44%;
+  }
+  .project-feature-text {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0; right: 0;
+    width: 100%;
+    padding: 26px 22px 22px;
+    border-radius: 0 0 22px 22px;
+    background: linear-gradient(0deg, rgba(5,0,20,0.94) 30%, transparent);
+    transform: translateY(24px);
+  }
+  .pf-desc { font-size: 0.88rem; }
+}
+
+/* reduced-motion: skip the pin/scrub, show a plain stacked layout */
+@media (prefers-reduced-motion: reduce) {
   .project-feature { height: auto; }
   .project-feature-sticky {
     position: relative;
@@ -1059,8 +1082,10 @@ button { font: inherit; cursor: pointer; }
   }
   .project-feature-text {
     position: relative;
-    top: auto; right: auto;
+    top: auto; right: auto; bottom: auto;
     width: 100%;
+    background: none;
+    padding: 0;
     transform: none !important;
     opacity: 1 !important;
     text-align: center;

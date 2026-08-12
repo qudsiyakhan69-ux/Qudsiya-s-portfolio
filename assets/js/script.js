@@ -235,10 +235,11 @@
 
   /* ---------- scroll-scrubbed project showcase ---------- */
   const projectFeatures = document.querySelectorAll('[data-project-feature]');
-  const pfEnabled = window.matchMedia('(min-width: 901px)').matches && !reduceMotion;
+  const pfEnabled = !reduceMotion;
   if (projectFeatures.length && pfEnabled) {
     const clamp01 = (n) => Math.max(0, Math.min(1, n));
     const lerp = (a, b, t) => a + (b - a) * t;
+    const mobileQuery = window.matchMedia('(max-width: 900px)');
 
     const items = Array.from(projectFeatures).map(section => {
       const media = section.querySelector('.project-feature-media');
@@ -250,6 +251,7 @@
 
     function updateProjectFeatures() {
       const vh = window.innerHeight;
+      const isMobile = mobileQuery.matches;
       items.forEach(item => {
         const rect = item.section.getBoundingClientRect();
         const total = item.section.offsetHeight - vh;
@@ -257,14 +259,16 @@
         const p = total > 0 ? clamp01(scrolled / total) : 0;
 
         const shrinkT = clamp01((p - 0.32) / 0.32);
-        const scale = lerp(1, 0.56, shrinkT);
-        const shiftX = lerp(0, -item.section.offsetWidth * 0.235, shrinkT);
+        const scale = lerp(1, isMobile ? 0.84 : 0.56, shrinkT);
+        const shiftX = isMobile ? 0 : lerp(0, -item.section.offsetWidth * 0.235, shrinkT);
         item.media.style.transform = `translate(calc(-50% + ${shiftX.toFixed(1)}px), -50%) scale(${scale.toFixed(4)})`;
         item.section.classList.toggle('pf-shrunk', shrinkT > 0.7);
 
         const textT = clamp01((p - 0.42) / 0.4);
         item.text.style.opacity = textT.toFixed(3);
-        item.text.style.transform = `translateY(-50%) translateX(${lerp(26, 0, textT).toFixed(1)}px)`;
+        item.text.style.transform = isMobile
+          ? `translateY(${lerp(24, 0, textT).toFixed(1)}px)`
+          : `translateY(-50%) translateX(${lerp(26, 0, textT).toFixed(1)}px)`;
 
         if (item.mediaEl && item.mediaEl.tagName === 'VIDEO') {
           const active = rect.top < vh * 1.1 && rect.bottom > -vh * 0.1;
