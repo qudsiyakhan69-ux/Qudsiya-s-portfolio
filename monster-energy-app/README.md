@@ -31,7 +31,8 @@ monster-energy-app/
 │   └── app.js          prototype logic: routing, scan flow, XP, caffeine
 ├── assets/
 │   ├── cans/           can photos used inside the app
-│   └── screens/        the 12 designed screens + can line-up
+│   ├── screens/        the 12 designed screens + can line-up
+│   └── source/         the original concept board
 ├── devserver.js        tiny local server for previewing
 └── README.md
 ```
