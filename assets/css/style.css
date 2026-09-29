@@ -1120,6 +1120,63 @@ button { font: inherit; cursor: pointer; }
 }
 .pf-link:hover { color: var(--bright-cyan); }
 
+/* ---------- main project spotlight ---------- */
+.spotlight .section-head { max-width: 760px; }
+.spotlight-media {
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glow), 0 30px 80px -30px rgba(3, 204, 255, 0.35);
+  background: #000;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.spotlight-media:hover { transform: translateY(-4px); }
+.spotlight-media video { display: block; width: 100%; height: auto; }
+
+.spotlight-info {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px 48px;
+  align-items: start;
+  margin-top: 40px;
+}
+.spotlight-desc { font-size: 1.02rem; grid-row: span 2; }
+.spotlight-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.spotlight-stats div {
+  padding: 16px 14px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.spotlight-stats strong {
+  display: block;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1;
+  margin-bottom: 6px;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.spotlight-stats span { display: block; font-size: 0.8rem; line-height: 1.4; }
+.spotlight-tools { font-size: 0.85rem; color: var(--text-dim); }
+.spotlight-info .btn { justify-self: start; }
+
+@media (max-width: 900px) {
+  .spotlight-info { grid-template-columns: 1fr; margin-top: 28px; }
+  .spotlight-desc { grid-row: auto; }
+}
+@media (max-width: 480px) {
+  .spotlight-stats { grid-template-columns: 1fr 1fr; }
+  .spotlight-stats div:first-child { grid-column: 1 / -1; }
+}
+
 /* mobile: same pin-and-play idea, but text slides up from the bottom
    over the media instead of sliding in from the side (no room for both) */
 @media (max-width: 900px) {

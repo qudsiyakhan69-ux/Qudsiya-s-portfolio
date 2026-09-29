@@ -1,0 +1,384 @@
+/* ==========================================================================
+   Case study pages — builds on style.css tokens
+   ========================================================================== */
+
+.cs { position: relative; z-index: 1; }
+
+/* ---------- hero ---------- */
+.cs-hero { padding: 150px 0 60px; }
+.cs-back {
+  display: block;
+  width: fit-content;
+  margin-bottom: 28px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-lo);
+  transition: color .25s var(--ease);
+}
+.cs-back:hover { color: var(--bright-cyan); }
+.cs-title {
+  font-size: clamp(2.3rem, 6vw, 4.4rem);
+  margin: 14px 0 22px;
+  max-width: 14ch;
+}
+.cs-lede {
+  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+  color: var(--text-lo);
+  max-width: 720px;
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 44px 0 48px;
+  padding: 24px 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+.cs-meta dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bright-cyan);
+  margin-bottom: 6px;
+}
+.cs-meta dd { margin: 0; color: var(--text-hi); font-size: 0.92rem; line-height: 1.5; }
+
+.cs-video {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glow);
+  background: #000;
+}
+.cs-video video { display: block; width: 100%; height: auto; }
+
+/* ---------- sections ---------- */
+.cs-section { padding: 70px 0; }
+.cs-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.cs-label { position: sticky; top: 110px; }
+.cs-num {
+  display: block;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+.cs-label h2 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+
+.cs-body { max-width: 760px; }
+.cs-body > * + * { margin-top: 18px; }
+.cs-body p { color: var(--text-lo); }
+.cs-body strong { color: var(--text-hi); }
+.cs-body h3 { font-size: 1.1rem; margin-bottom: 12px; }
+.cs-small { font-size: 0.84rem; color: var(--text-dim) !important; }
+
+.cs-list { margin: 0; padding-left: 1.2em; }
+.cs-list li { line-height: 1.7; margin-bottom: 8px; }
+.cs-list li::marker { color: var(--pink-magenta); }
+
+/* ---------- feature cards ---------- */
+.cs-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.cs-feature {
+  padding: 22px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.cs-feature h3 { font-size: 1rem; margin-bottom: 8px; }
+.cs-feature p { font-size: 0.9rem; line-height: 1.6; }
+
+/* ---------- images ---------- */
+.cs-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 44px;
+}
+.cs-fig { margin: 0; }
+.cs-fig-wide { grid-column: 1 / -1; }
+.cs-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+}
+.cs-fig figcaption {
+  margin-top: 10px;
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ---------- task steps ---------- */
+.cs-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.cs-steps li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.cs-steps li > span {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.cs-steps p { font-size: 0.88rem; line-height: 1.5; margin-top: 2px; }
+
+/* ---------- method stats ---------- */
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.cs-stat {
+  padding: 20px 18px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.cs-stat strong {
+  display: block;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.cs-stat span { font-size: 0.84rem; color: var(--text-lo); line-height: 1.4; display: block; }
+
+/* ---------- results chart ---------- */
+.cs-chart {
+  --c-vr: #b93ad0;
+  --c-teams: #1a9ccc;
+  --c-same: #4a4570;
+  padding: 26px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.cs-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.84rem;
+  color: var(--text-lo);
+  margin-bottom: 22px;
+}
+.cs-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.sw-vr { background: var(--c-vr); }
+.sw-teams { background: var(--c-teams); }
+.sw-same { background: var(--c-same); }
+
+.cs-bar-row + .cs-bar-row { margin-top: 22px; }
+.cs-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+}
+.cs-bar-head span { font-size: 0.8rem; color: var(--text-dim); }
+.cs-bar { display: flex; gap: 2px; height: 34px; }
+.seg {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: filter .2s var(--ease);
+}
+.seg:hover { filter: brightness(1.15); }
+.seg:first-child { border-radius: 4px 0 0 4px; }
+.seg:last-child { border-radius: 0 4px 4px 0; }
+.seg-vr { background: var(--c-vr); color: #fff; }
+.seg-teams { background: var(--c-teams); color: var(--bg-0); }
+.seg-same { background: var(--c-same); color: var(--text-hi); }
+.cs-bar-values { display: none; margin-top: 6px !important; font-size: 0.8rem; color: var(--text-lo); }
+
+.cs-highlight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(240, 66, 255, 0.35);
+  background: linear-gradient(135deg, rgba(212, 3, 225, 0.12), rgba(3, 204, 255, 0.06));
+}
+.cs-highlight strong {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 2.6rem;
+  line-height: 1;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cs-highlight span { color: var(--text-hi); }
+
+/* ---------- participant themes ---------- */
+.cs-themes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.cs-theme {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 3px solid var(--text-dim);
+}
+.cs-theme.good { border-top-color: #b93ad0; }
+.cs-theme.teams { border-top-color: #1a9ccc; }
+.cs-theme.issue { border-top-color: #7d78a3; }
+.cs-theme strong {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
+}
+.cs-theme small { font-size: 0.9rem; color: var(--text-dim); font-weight: 600; }
+.cs-theme-tag {
+  display: block;
+  margin: 10px 0 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bright-cyan);
+}
+.cs-theme p { font-size: 0.88rem; line-height: 1.55; }
+
+/* ---------- conclusion ---------- */
+.cs-quote {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  line-height: 1.45;
+  color: var(--text-hi) !important;
+  padding-left: 20px;
+  border-left: 3px solid var(--pink-magenta);
+}
+
+.cs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+/* ---------- concept disclaimer ---------- */
+.cs-disclaimer {
+  max-width: 720px;
+  margin-top: 22px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.86rem;
+  color: var(--text-lo);
+}
+
+/* ---------- colour swatches ---------- */
+.cs-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.cs-swatch span {
+  display: block;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 8px;
+}
+.cs-swatch strong { display: block; font-size: 0.82rem; }
+.cs-swatch small { font-size: 0.74rem; color: var(--text-dim); }
+
+/* ---------- app screen grid ---------- */
+.cs-screens {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+.cs-screens figure { margin: 0; }
+.cs-screens img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: #0a0a0a;
+}
+.cs-screens figcaption {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* ---------- Monster case study accent ---------- */
+.cs-monster .kicker,
+.cs-monster .cs-meta dt,
+.cs-monster .cs-theme-tag { color: #7CFF1E; }
+.cs-monster .cs-list li::marker { color: #7CFF1E; }
+.cs-monster .cs-back:hover { color: #7CFF1E; }
+
+.cs-end { padding: 30px 0 110px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .cs-hero { padding-top: 120px; }
+  .cs-meta { grid-template-columns: 1fr 1fr; }
+  .cs-grid { grid-template-columns: 1fr; gap: 20px; }
+  .cs-label { position: static; }
+  .cs-stats { grid-template-columns: 1fr 1fr; }
+  .cs-themes { grid-template-columns: 1fr 1fr; }
+  .cs-steps { grid-template-columns: 1fr; }
+  .cs-screens { grid-template-columns: repeat(3, 1fr); }
+  .cs-section { padding: 50px 0; }
+}
+@media (max-width: 600px) {
+  .cs-meta,
+  .cs-features,
+  .cs-gallery,
+  .cs-two { grid-template-columns: 1fr; }
+  .cs-screens { grid-template-columns: 1fr 1fr; }
+  .cs-swatches { grid-template-columns: repeat(3, 1fr); }
+  .cs-themes { grid-template-columns: 1fr; }
+  .cs-chart { padding: 20px 16px; }
+  .cs-bar { height: 22px; }
+  .seg { font-size: 0; padding: 0; }
+  .cs-bar-values { display: block; }
+  .cs-highlight { flex-direction: column; align-items: flex-start; gap: 8px; }
+}

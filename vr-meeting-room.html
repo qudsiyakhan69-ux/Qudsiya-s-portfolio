@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immersive VR Meeting Room — Qudsiya Mehmood</title>
+<meta name="description" content="Case study: a multiplayer VR meeting room built in Unity for an MSc dissertation comparing remote collaboration in immersive VR with Microsoft Teams.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/case-study.css">
+</head>
+<body>
+
+<div class="site-starfield" id="siteStarfield" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ===== NAV ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-mark" aria-label="Qudsiya Mehmood — home">
+      <span class="logo-mark-ring"></span>
+      <span class="logo-mark-letters">QK</span>
+    </a>
+
+    <nav class="pill-nav" id="mainNav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#skills" class="nav-link">Skills</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#work" class="nav-link active">Work</a>
+      <a href="index.html#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="index.html#contact" class="btn btn-glow btn-small nav-cta">Let's Connect</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="cs">
+
+  <!-- ===== HERO ===== -->
+  <section class="cs-hero">
+    <div class="container">
+      <a href="index.html#work" class="cs-back">← Back to work</a>
+      <span class="kicker">Case Study · MSc Dissertation</span>
+      <h1 class="cs-title" data-split-reveal>Immersive VR <span class="grad-text">Meeting Room</span></h1>
+      <p class="cs-lede">How does remote collaboration in an immersive VR environment compare to Microsoft Teams in terms of presence, communication quality and engagement? I built a multiplayer VR meeting room to find out.</p>
+
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>UX research, design, Unity development &amp; testing</dd></div>
+        <div><dt>Context</dt><dd>MSc User Experience Design, Birmingham City University · 2026</dd></div>
+        <div><dt>Platform</dt><dd>Meta Quest 2</dd></div>
+        <div><dt>Tools</dt><dd>Unity 6 · XR Interaction Toolkit · OpenXR · Photon PUN</dd></div>
+      </dl>
+
+      <div class="cs-video" data-reveal>
+        <video src="assets/videos/vr-meeting-room.mp4" poster="assets/img/work/vr-meeting-room-poster.jpg" controls muted loop playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">01</span><h2>Overview</h2></div>
+      <div class="cs-body" data-reveal>
+        <p>Remote collaboration grew rapidly after COVID-19, but different tools create very different experiences. Screen-based video calls like Microsoft Teams are familiar and widely used, yet they can limit the sense of presence and engagement. Immersive VR puts people in a shared three-dimensional space with avatars and objects they can physically interact with, but it brings its own usability and comfort challenges.</p>
+        <p>For my MSc dissertation I designed, built and tested a multiplayer VR meeting room, then ran a controlled study comparing it with Microsoft Teams, using the same collaborative task, the same participants and two platforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEM ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">02</span><h2>The problem</h2></div>
+      <div class="cs-body" data-reveal>
+        <ul class="cs-list">
+          <li>Remote collaboration can lack parts of natural face-to-face interaction.</li>
+          <li>Presence, engagement and communication may change depending on the medium.</li>
+          <li>VR adds immersion and physical interaction, but also usability challenges.</li>
+        </ul>
+        <p><strong>The research gap:</strong> earlier studies comparing VR with video conferencing produced mixed findings that depended on the task, platform and study conditions. No medium was consistently better. A controlled comparison using the same task adds further evidence.</p>
+        <p class="cs-small">Grounded in Social Presence Theory (Short, Williams &amp; Christie, 1976) and Media Richness Theory (Daft &amp; Lengel, 1986), and building on comparative studies by Van Gent et al. (2024), Bonfert et al. (2023) and Macchi &amp; De Pisapia (2024).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUILD ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">03</span><h2>What I built</h2></div>
+      <div class="cs-body" data-reveal>
+        <p>A networked VR meeting room in Unity 6 for Meta Quest 2. Two participants join the same room from separate headsets, see each other as avatars around a conference table, and work through a shared card-sorting task together.</p>
+        <div class="cs-features">
+          <div class="cs-feature"><h3>First-person XR view</h3><p>Participants see the room through the headset and use tracked controllers as their hands.</p></div>
+          <div class="cs-feature"><h3>Grabbable task cards</h3><p>Ten physical cards on the table that can be picked up and placed onto priority mats.</p></div>
+          <div class="cs-feature"><h3>Networked avatars</h3><p>Photon PUN syncs both players' avatars and every card movement in real time.</p></div>
+          <div class="cs-feature"><h3>Priority mats</h3><p>High, Medium and Low priority zones on the table give the task a clear physical structure.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="cs-gallery" data-reveal>
+        <figure class="cs-fig cs-fig-wide">
+          <img src="assets/img/work/vr-cs-avatars.jpg" alt="Two player avatars, orange and blue, seated at a conference table with task cards and priority mats" loading="lazy">
+          <figcaption>Both players as networked avatars around the shared table.</figcaption>
+        </figure>
+        <figure class="cs-fig">
+          <img src="assets/img/work/vr-cs-headset.jpg" alt="First-person headset view of the meeting room showing both VR controllers and the priority mats" loading="lazy">
+          <figcaption>The first-person view inside the headset.</figcaption>
+        </figure>
+        <figure class="cs-fig">
+          <img src="assets/img/work/vr-cs-editor.jpg" alt="Unity editor view of ten task cards laid out on the meeting table" loading="lazy">
+          <figcaption>Setting up the ten task cards in the Unity editor.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TASK ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">04</span><h2>The task</h2></div>
+      <div class="cs-body" data-reveal>
+        <p>Two participants discussed ten task cards, such as a security fix, a login bug and a payment error, and jointly sorted them by priority. The same task was used in both environments, giving a consistent basis for comparison.</p>
+        <ol class="cs-steps">
+          <li><span>1</span><div><strong>Discuss</strong><p>Talk through each card together.</p></div></li>
+          <li><span>2</span><div><strong>Decide</strong><p>Agree on its priority level.</p></div></li>
+          <li><span>3</span><div><strong>Sort</strong><p>Place it on High, Medium or Low.</p></div></li>
+        </ol>
+        <figure class="cs-fig">
+          <img src="assets/img/work/vr-cs-web-board.jpg" alt="Web-based card sorting board with High, Medium and Low priority columns containing the ten task cards" loading="lazy">
+          <figcaption>For the Teams condition I built a shared web-based card-sorting board. Teams handled the video and audio, and the board provided the shared workspace.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METHOD ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">05</span><h2>How I tested it</h2></div>
+      <div class="cs-body" data-reveal>
+        <p>A mixed-methods comparative study with a within-participant design: every participant experienced both environments and compared them directly.</p>
+        <div class="cs-stats">
+          <div class="cs-stat"><strong>8</strong><span>participants</span></div>
+          <div class="cs-stat"><strong>4</strong><span>pairs</span></div>
+          <div class="cs-stat"><strong>2</strong><span>conditions: VR, then Teams</span></div>
+          <div class="cs-stat"><strong>8</strong><span>interview questions</span></div>
+        </div>
+        <p><strong>Questionnaire:</strong> completed after both conditions, rating presence, communication quality, engagement and overall preference on a 5-point scale from "much more in Teams" to "much more in VR". This showed <em>what</em> participants preferred.</p>
+        <p><strong>Semi-structured interviews:</strong> covering collaboration, physical interaction, communication, decision-making, usability, headset comfort, technical problems and suggested improvements. These explained <em>why</em> they experienced differences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">06</span><h2>Results</h2></div>
+      <div class="cs-body" data-reveal>
+        <p>Average preference across the questionnaire items for each theme:</p>
+
+        <div class="cs-chart" role="figure" aria-label="Average preference by theme: VR, Teams or about the same">
+          <div class="cs-legend">
+            <span><i class="sw sw-vr"></i>Immersive VR</span>
+            <span><i class="sw sw-teams"></i>Microsoft Teams</span>
+            <span><i class="sw sw-same"></i>About the same</span>
+          </div>
+
+          <div class="cs-bar-row">
+            <div class="cs-bar-head"><strong>Presence</strong><span>VR tendency ↑</span></div>
+            <div class="cs-bar">
+              <span class="seg seg-vr" style="flex-basis:53.1%" title="Presence · Immersive VR: 53.1%">53.1%</span>
+              <span class="seg seg-teams" style="flex-basis:34.4%" title="Presence · Microsoft Teams: 34.4%">34.4%</span>
+              <span class="seg seg-same" style="flex-basis:12.5%" title="Presence · About the same: 12.5%">12.5%</span>
+            </div>
+            <p class="cs-bar-values">VR 53.1% · Teams 34.4% · Same 12.5%</p>
+          </div>
+
+          <div class="cs-bar-row">
+            <div class="cs-bar-head"><strong>Communication quality</strong><span>Mixed ↔</span></div>
+            <div class="cs-bar">
+              <span class="seg seg-vr" style="flex-basis:35.1%" title="Communication quality · Immersive VR: 35.1%">35.1%</span>
+              <span class="seg seg-teams" style="flex-basis:38.7%" title="Communication quality · Microsoft Teams: 38.7%">38.7%</span>
+              <span class="seg seg-same" style="flex-basis:26.2%" title="Communication quality · About the same: 26.2%">26.2%</span>
+            </div>
+            <p class="cs-bar-values">VR 35.1% · Teams 38.7% · Same 26.2%</p>
+          </div>
+
+          <div class="cs-bar-row">
+            <div class="cs-bar-head"><strong>Engagement</strong><span>VR tendency ↑</span></div>
+            <div class="cs-bar">
+              <span class="seg seg-vr" style="flex-basis:53.1%" title="Engagement · Immersive VR: 53.1%">53.1%</span>
+              <span class="seg seg-teams" style="flex-basis:37.5%" title="Engagement · Microsoft Teams: 37.5%">37.5%</span>
+              <span class="seg seg-same" style="flex-basis:9.4%" title="Engagement · About the same: 9.4%">9.4%</span>
+            </div>
+            <p class="cs-bar-values">VR 53.1% · Teams 37.5% · Same 9.4%</p>
+          </div>
+        </div>
+
+        <div class="cs-highlight">
+          <strong>62.5%</strong>
+          <span>of participants chose VR as the better overall experience.</span>
+        </div>
+
+        <ul class="cs-list">
+          <li><strong>Presence:</strong> 62.5% felt more "together" in VR, compared with 37.5% in Teams.</li>
+          <li><strong>Communication:</strong> communicating ideas clearly was split evenly (37.5% each), while Teams led for reaching a decision (50% vs 25%).</li>
+          <li><strong>Engagement:</strong> 62.5% felt more engaged in the task in VR, but Teams led for decision-making involvement (62.5% vs 37.5%).</li>
+        </ul>
+        <p class="cs-small">Descriptive percentages from 8 participants. No significance testing was performed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VOICES ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">07</span><h2>What participants said</h2></div>
+      <div class="cs-body" data-reveal>
+        <p>Number of participants (out of 8) who raised each theme in the interviews:</p>
+        <div class="cs-themes">
+          <div class="cs-theme good"><strong>7<small>/8</small></strong><span class="cs-theme-tag">VR benefit</span><p>Grabbing and moving cards felt positive and interactive.</p></div>
+          <div class="cs-theme good"><strong>5<small>/8</small></strong><span class="cs-theme-tag">VR benefit</span><p>VR helped them stay focused and attentive.</p></div>
+          <div class="cs-theme teams"><strong>4<small>/8</small></strong><span class="cs-theme-tag">Teams benefit</span><p>Teams felt clearer or easier for discussion and decisions.</p></div>
+          <div class="cs-theme issue"><strong>7<small>/8</small></strong><span class="cs-theme-tag">VR challenge</span><p>Controller use and grabbing cards got in the way.</p></div>
+          <div class="cs-theme issue"><strong>6<small>/8</small></strong><span class="cs-theme-tag">VR challenge</span><p>Headset discomfort or fatigue.</p></div>
+          <div class="cs-theme issue"><strong>5<small>/8</small></strong><span class="cs-theme-tag">VR challenge</span><p>Tracking, lag or connection issues.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONCLUSION ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">08</span><h2>Conclusion</h2></div>
+      <div class="cs-body" data-reveal>
+        <p class="cs-quote">Neither immersive VR nor Microsoft Teams was better in every aspect of remote collaboration. Immersion does not automatically mean better collaboration.</p>
+        <p>The shared 3D space and visible grab interactions made partners feel present, and actively handling the cards kept people involved. Teams, however, stayed stronger for familiar communication and group decision-making, and technical issues could interrupt conversation in VR.</p>
+        <p>The right choice depends on the activity: <strong>VR</strong> where presence, physical interaction and engagement matter; <strong>Teams</strong> for familiar communication and collaborative decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIMITS & NEXT ===== -->
+  <section class="cs-section">
+    <div class="container cs-grid">
+      <div class="cs-label"><span class="cs-num">09</span><h2>Limitations &amp; next steps</h2></div>
+      <div class="cs-body" data-reveal>
+        <div class="cs-two">
+          <div>
+            <h3>Limitations</h3>
+            <ul class="cs-list">
+              <li><strong>Small sample:</strong> 8 participants, so results show tendencies rather than definitive conclusions.</li>
+              <li><strong>Single task:</strong> one card-sorting activity can't represent every workplace scenario.</li>
+              <li><strong>Order effect:</strong> every pair did VR first, so familiarity may have shaped the Teams session.</li>
+              <li><strong>Prototype limits:</strong> grab controls, connection issues and headset comfort.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>What I'd do next</h3>
+            <ul class="cs-list">
+              <li>Test with a larger, more diverse group of participants.</li>
+              <li>Try other tasks: brainstorming, problem-solving and longer meetings.</li>
+              <li>Improve the prototype with more intuitive grabbing, hand tracking and better networking.</li>
+              <li>Counterbalance the order so half the pairs start in Teams.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section cs-end">
+    <div class="container">
+      <a href="index.html#work" class="btn btn-primary">← Back to all work</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="logo logo-footer">
+      <span class="logo-badge">
+        <span class="logo-ring"></span>
+        <span class="logo-letters">QK</span>
+      </span>
+      <span class="logo-text">
+        <strong>Qudsiya</strong>
+        <em>3D Animator &amp; Designer</em>
+      </span>
+    </a>
+    <nav class="footer-nav">
+      <a href="index.html#about">About</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 Qudsiya Mehmood. All rights reserved.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

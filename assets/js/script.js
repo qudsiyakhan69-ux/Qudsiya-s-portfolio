@@ -248,9 +248,16 @@
     }
   }
 
-  /* ---------- work video card (hover on desktop, tap on touch) ---------- */
-  const videoCard = document.getElementById('unseenRealmCard');
-  if (videoCard) {
+  /* ---------- main project video: no autoplay for reduced-motion visitors ---------- */
+  const spotlightVideo = document.getElementById('spotlightVideo');
+  if (spotlightVideo && reduceMotion) {
+    spotlightVideo.removeAttribute('autoplay');
+    spotlightVideo.pause();
+    spotlightVideo.controls = true;
+  }
+
+  /* ---------- work video cards (hover on desktop, tap on touch) ---------- */
+  document.querySelectorAll('.work-video-card').forEach(videoCard => {
     const video = videoCard.querySelector('video');
     const playVideo = () => {
       video.play().catch(() => {});
@@ -271,7 +278,7 @@
       videoCard.addEventListener('focus', playVideo);
       videoCard.addEventListener('blur', pauseVideo);
     }
-  }
+  });
 
   /* ---------- scroll-scrubbed project showcase ---------- */
   const projectFeatures = document.querySelectorAll('[data-project-feature]');
