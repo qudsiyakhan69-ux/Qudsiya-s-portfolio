@@ -43,7 +43,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
 
 /* ---------- page chrome (outside the phone) ---------- */
 .stage-head {
-  width: min(420px, 100%);
+  width: min(max(300px, calc(390px * var(--k, 1))), 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,7 +53,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
 .stage-title span { color: var(--green); }
 .stage-note { font-size: 0.68rem; color: var(--text-dim); line-height: 1.5; }
 .stage-foot {
-  width: min(420px, 100%);
+  width: min(max(320px, calc(390px * var(--k, 1))), 100%);
   font-size: 0.66rem;
   color: var(--text-dim);
   line-height: 1.6;
@@ -74,16 +74,24 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
 .btn-reset:hover { color: var(--bone); border-color: rgba(255,255,255,0.3); }
 
 /* ---------- phone ---------- */
+/* the phone keeps a true 390 x 844 iPhone shape and is scaled as a whole,
+   so every proportion inside it stays right whatever the window height */
+.phone-stage {
+  flex: none;
+  width: calc(390px * var(--k, 1));
+  height: calc(844px * var(--k, 1));
+}
 .phone {
   position: relative;
   width: 390px;
   height: 844px;
-  max-height: calc(100vh - 150px);
+  aspect-ratio: 390 / 844;
   border-radius: 46px;
   padding: 10px;
   background: linear-gradient(160deg, #2a2a2a, #0d0d0d);
   box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255,255,255,0.06);
-  flex: none;
+  transform: scale(var(--k, 1));
+  transform-origin: top left;
 }
 .phone-screen {
   position: relative;
@@ -550,14 +558,19 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
 
 /* ---------- phone-sized screens: app fills the window ---------- */
 @media (max-width: 560px) {
-  body { padding: 0; gap: 0; display: block; }
-  .stage-head, .stage-foot { display: none; }
-  .phone {
+  html:not(.embedded) body { padding: 0; gap: 0; display: block; }
+  html:not(.embedded) .stage-head,
+  html:not(.embedded) .stage-foot { display: none; }
+  html:not(.embedded) .phone-stage { width: 100%; height: 100dvh; }
+  html:not(.embedded) .phone {
     width: 100%; height: 100vh; height: 100dvh;
-    max-height: none; border-radius: 0; padding: 0;
+    aspect-ratio: auto; border-radius: 0; padding: 0;
     box-shadow: none; background: var(--black);
+    transform: none;
   }
-  .phone-screen { border-radius: 0; }
-  .notch { display: none; }
-  .status-bar { height: 38px; }
+  html:not(.embedded) .phone-screen { border-radius: 0; }
+  html:not(.embedded) .notch { display: none; }
+  html:not(.embedded) .status-bar { height: 38px; }
+  /* embedded in the website: keep the phone shape, just tighten the padding */
+  html.embedded body { padding: 14px 8px 18px; gap: 12px; }
 }

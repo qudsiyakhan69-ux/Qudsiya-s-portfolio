@@ -290,6 +290,24 @@
     toast(on ? 'Reminder removed' : 'We\'ll ping you at 9am');
   });
 
+  /* ---------- keep the phone a true 390x844 iPhone shape ---------- */
+  const stage = $('.phone-stage');
+  const embedded = window.self !== window.top;
+  if (embedded) document.documentElement.classList.add('embedded');
+  const fitPhone = () => {
+    if (!embedded && window.matchMedia('(max-width: 560px)').matches) {
+      document.documentElement.style.removeProperty('--k');
+      return;
+    }
+    const chrome = embedded ? 96 : 118;                       // room for the title and footnote
+    const k = Math.min(1, (window.innerHeight - chrome) / 844, window.innerWidth / 430);
+    document.documentElement.style.setProperty('--k', Math.max(0.35, k).toFixed(3));
+  };
+  if (stage) {
+    fitPhone();
+    window.addEventListener('resize', fitPhone, { passive: true });
+  }
+
   /* ---------- status bar clock ---------- */
   function tickClock() {
     $('#clock').textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
