@@ -33,7 +33,7 @@
       });
 
       /* fallback so visitors who never scroll/click/tap aren't stuck */
-      setTimeout(openDoors, 6000);
+      setTimeout(openDoors, 1500);
     }
   }
 
@@ -251,9 +251,17 @@
   /* ---------- main project video: no autoplay for reduced-motion visitors ---------- */
   const spotlightVideo = document.getElementById('spotlightVideo');
   if (spotlightVideo && reduceMotion) {
-    spotlightVideo.removeAttribute('autoplay');
-    spotlightVideo.pause();
     spotlightVideo.controls = true;
+  } else if (spotlightVideo && 'IntersectionObserver' in window) {
+    /* only download and play once it's near the viewport, so it doesn't slow the first load */
+    new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) spotlightVideo.play().catch(() => {});
+        else spotlightVideo.pause();
+      });
+    }, { rootMargin: '200px 0px' }).observe(spotlightVideo);
+  } else if (spotlightVideo) {
+    spotlightVideo.play().catch(() => {});
   }
 
   /* ---------- work video cards (hover on desktop, tap on touch) ---------- */
